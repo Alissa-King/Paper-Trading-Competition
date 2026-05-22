@@ -9,11 +9,14 @@ interface TradingViewChartProps {
 
 export default function TradingViewChart({ symbol, height = 400 }: TradingViewChartProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const widgetRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current || !widgetRef.current) return
 
-    containerRef.current.innerHTML = ''
+    // Clear TradingView's previously injected iframe, preserve the widget div itself
+    widgetRef.current.innerHTML = ''
+    containerRef.current.querySelectorAll('script').forEach(s => s.remove())
 
     const script = document.createElement('script')
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'
@@ -39,13 +42,15 @@ export default function TradingViewChart({ symbol, height = 400 }: TradingViewCh
     containerRef.current.appendChild(script)
 
     return () => {
-      if (containerRef.current) containerRef.current.innerHTML = ''
+      containerRef.current?.querySelectorAll('script').forEach(s => s.remove())
+      if (widgetRef.current) widgetRef.current.innerHTML = ''
     }
   }, [symbol])
 
   return (
     <div className="tradingview-widget-container" ref={containerRef} style={{ height }}>
       <div
+        ref={widgetRef}
         className="tradingview-widget-container__widget"
         style={{ height: '100%', width: '100%' }}
       />
