@@ -7,7 +7,7 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PaperTrade — Free Trading Competition',
+  title: 'Downside Probably — Free Trading Competition',
   description:
     'Compete with $100,000 in virtual money. Trade stocks and crypto in real-time. Climb the leaderboard.',
 }
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2 font-bold text-white">
               <span className="text-green-400 text-xl">📈</span>
-              <span>PaperTrade</span>
+              <span>Downside Probably</span>
             </a>
             <div className="flex items-center gap-4 text-sm">
               <a href="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</a>
