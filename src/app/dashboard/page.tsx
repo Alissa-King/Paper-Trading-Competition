@@ -107,7 +107,7 @@ export default function DashboardPage() {
           <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
             <TradingViewChart
               symbol={CHART_SYMBOLS[selectedAsset]}
-              height={440}
+              height={600}
             />
           </div>
 
